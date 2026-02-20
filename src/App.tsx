@@ -33,7 +33,7 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-brand-black font-sans selection:bg-brand-red selection:text-white">
+    <div className="min-h-screen bg-white text-brand-black font-sans selection:bg-brand-red selection:text-white overflow-x-hidden">
       
       {/* --- Navigation --- */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-4">
@@ -197,9 +197,9 @@ export default function App() {
           </div>
 
           {/* Category Tabs */}
-          <div className="relative mb-12">
+          <div className="relative mb-12 -mx-6">
             <div className="overflow-x-auto category-scroll">
-              <div className="flex gap-3 justify-start md:justify-center py-3 px-1 min-w-max md:min-w-0">
+              <div className="flex gap-3 px-6 py-3 w-max">
                 {MENU_CATEGORIES.map((cat) => (
                   <button
                     key={cat}

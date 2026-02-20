@@ -197,16 +197,16 @@ export default function App() {
           </div>
 
           {/* Category Tabs */}
-          <div className="relative mb-12 pt-2">
-            <div className="overflow-x-auto category-scroll pb-4">
-              <div className="flex gap-3 justify-start md:justify-center px-4 min-w-max md:min-w-0">
+          <div className="relative mb-12">
+            <div className="overflow-x-auto category-scroll">
+              <div className="flex gap-3 justify-start md:justify-center py-3 px-1 min-w-max md:min-w-0">
                 {MENU_CATEGORIES.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={`whitespace-nowrap px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest border-2 transition-all ${
                       activeCategory === cat
-                        ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20"
+                        ? "bg-brand-red border-brand-red text-white"
                         : "bg-white border-gray-100 text-gray-400 hover:border-brand-red hover:text-brand-red"
                     }`}
                   >

@@ -38,6 +38,7 @@
 /* Custom Scrollbar for the Red Palette */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -45,6 +46,37 @@
 }
 
 ::-webkit-scrollbar-thumb {
+  background: #D42020;
+  border-radius: 10px;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Show scrollbar for category tabs */
+.category-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #D42020 #F8F8F8;
+}
+
+.category-scroll::-webkit-scrollbar {
+  height: 4px;
+  display: block;
+}
+
+.category-scroll::-webkit-scrollbar-track {
+  background: #F8F8F8;
+  border-radius: 10px;
+}
+
+.category-scroll::-webkit-scrollbar-thumb {
   background: #D42020;
   border-radius: 10px;
 }

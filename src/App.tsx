@@ -177,19 +177,19 @@ export default function App() {
       </section>
 
       {/* --- Main Menu Explorer --- */}
-      <section className="py-32 px-6 bg-brand-light" id="menu">
+      <section className="py-24 px-6 bg-brand-light" id="menu">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <h2 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter mb-4 text-brand-black">Full Menu</h2>
             <p className="text-gray-400 font-medium italic">Everything we make is made with speed and soul.</p>
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-16 relative">
+          <div className="max-w-2xl mx-auto mb-12 relative">
             <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-300" />
-            <input 
-              type="text" 
-              placeholder="Search for Wings, Pizza, Tacos..." 
+            <input
+              type="text"
+              placeholder="Search for Wings, Pizza, Tacos..."
               className="w-full bg-white border border-gray-200 rounded-2xl py-6 pl-16 pr-6 outline-none focus:border-brand-red focus:ring-4 focus:ring-brand-red/5 transition-all italic text-lg shadow-sm"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -197,60 +197,64 @@ export default function App() {
           </div>
 
           {/* Category Tabs */}
-          <div className="flex overflow-x-auto gap-3 mb-16 no-scrollbar justify-start md:justify-center pb-4">
-            {MENU_CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`whitespace-nowrap px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest border-2 transition-all ${
-                  activeCategory === cat 
-                    ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20" 
-                    : "bg-white border-gray-100 text-gray-400 hover:border-brand-red hover:text-brand-red"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="relative mb-12">
+            <div className="flex overflow-x-auto gap-3 category-scroll justify-start md:justify-center px-4 py-6">
+              {MENU_CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`whitespace-nowrap px-8 py-3.5 rounded-full text-[10px] font-black uppercase tracking-widest border-2 transition-all ${
+                    activeCategory === cat
+                      ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20"
+                      : "bg-white border-gray-100 text-gray-400 hover:border-brand-red hover:text-brand-red"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Menu Items Grid */}
           <div className="menu-grid">
             <AnimatePresence mode="popLayout">
               {filteredItems.map((item) => (
-                <motion.div 
+                <motion.div
                   layout
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  key={item.id} 
-                  className="bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-2xl transition-all group flex flex-col"
+                  key={item.id}
+                  className="bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-2xl hover:border-brand-red/20 transition-all group flex flex-col"
                 >
-                  <div className="h-56 bg-gray-50 flex items-center justify-center overflow-hidden relative">
+                  <div className="h-64 bg-gray-50 flex items-center justify-center overflow-hidden relative">
                     {item.image ? (
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (
                       <div className="text-brand-red/5 font-black text-7xl italic">
                         {item.name[0]}
                       </div>
                     )}
                     {item.popular && (
-                      <div className="absolute top-4 left-4 bg-brand-yellow text-brand-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest flex items-center gap-1 shadow-md">
+                      <div className="absolute top-4 right-4 bg-brand-yellow text-brand-black px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
                         <Star className="w-3 h-3 fill-brand-black" /> Popular
                       </div>
                     )}
                   </div>
-                  <div className="p-8 flex flex-col flex-grow">
-                    <div className="flex justify-between items-start gap-4 mb-3">
-                      <h4 className="font-black italic uppercase tracking-tight text-xl leading-tight text-brand-black">{item.name}</h4>
-                      <div className="text-brand-red font-black text-2xl italic">${item.price}</div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start gap-4 mb-2">
+                      <h4 className="font-black italic uppercase tracking-tight text-lg leading-tight text-brand-black flex-1">{item.name}</h4>
+                      <div className="text-brand-red font-black text-xl italic whitespace-nowrap">${item.price.toFixed(2)}</div>
                     </div>
-                    <p className="text-sm text-gray-400 italic mb-8 flex-grow leading-relaxed">{item.description || "Freshly prepared with quality ingredients."}</p>
-                    <a 
-                      href={DOOR_DASH_LINK} 
-                      target="_blank" 
-                      className="w-full bg-brand-red text-white py-4 rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest hover:bg-brand-red-dark transition-all shadow-md active:scale-95"
+                    {item.description && (
+                      <p className="text-sm text-gray-400 italic mb-6 flex-grow leading-relaxed">{item.description}</p>
+                    )}
+                    <a
+                      href={DOOR_DASH_LINK}
+                      target="_blank"
+                      className="w-full bg-brand-red text-white py-3.5 rounded-xl flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-brand-red-dark transition-all shadow-md hover:shadow-lg active:scale-95"
                     >
-                      <ShoppingBag className="w-5 h-5" />
+                      <ShoppingBag className="w-4 h-4" />
                       Add to order
                     </a>
                   </div>

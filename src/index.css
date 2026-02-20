@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #D42020; /* Appetite-inducing Crimson */
+  --color-brand-red-dark: #B01A1A;
+  --color-brand-black: #18181B; /* Deep Charcoal for Text */
+  --color-brand-light: #F8F8F8; /* Clean Background */
+  --color-brand-yellow: #FFB800; /* Contrast/Urgency */
+}
+
+@layer base {
+  body {
+    @apply bg-white text-brand-black antialiased selection:bg-brand-red selection:text-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-red text-white px-6 py-3 rounded-xl font-black uppercase tracking-widest text-sm 
+           hover:bg-brand-red-dark hover:shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-brand-red border-2 border-brand-red px-6 py-3 rounded-xl font-black uppercase tracking-widest text-sm 
+           hover:bg-brand-red hover:text-white transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .glass-card {
+    @apply bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-shadow;
+  }
+
+  .menu-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+}
+
+/* Custom Scrollbar for the Red Palette */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F8F8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D42020;
+  border-radius: 10px;
+}
